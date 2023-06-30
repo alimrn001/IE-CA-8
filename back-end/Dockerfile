@@ -1,13 +1,14 @@
-FROM openjdk:11
+# Stage 1: Build
+FROM maven:3.8.4-openjdk-17 AS MAVEN
+MAINTAINER MEHRANI
+COPY pom.xml /build/
+COPY src /build/src/
+WORKDIR /build/
+RUN mvn package
 
+# Stage 2: Package and run
+FROM openjdk:19
 WORKDIR /app
-
-COPY . /app
-
-RUN apt-get update && apt-get install -y maven
-
-RUN mvn clean package
-
-EXPOSE 8080
-
-CMD ["java", "-jar", "target/myapp.jar"]
+COPY --from=MAVEN /build/target/*.jar /app/app.jar
+EXPOSE 8888
+ENTRYPOINT ["java", "-jar", "app.jar"]
