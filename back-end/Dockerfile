@@ -7,7 +7,7 @@ WORKDIR /build/
 RUN mvn package
 
 # Stage 2: Package and run
-FROM openjdk:19
+FROM openjdk:17
 WORKDIR /app
 COPY --from=MAVEN /build/target/*.jar /app/app.jar
 EXPOSE 8888
