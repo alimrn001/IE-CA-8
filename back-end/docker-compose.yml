@@ -1,19 +1,19 @@
-version: '3'
-services:
-  mysql:
-    image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: sqlPass80%
-      MYSQL_DATABASE: balootDB
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - mysql
-    volumes:
-      - ./application.properties:/app/application.properties
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/balootDB?useUnicode=true&characterEncoding=UTF-8
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: sqlPass80%
+#version: '3'
+#services:
+#  mysql:
+#    image: mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: sqlPass80%
+#      MYSQL_DATABASE: balootDB
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - mysql
+#    volumes:
+#      - ./application.properties:/app/application.properties
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/balootDB?useUnicode=true&characterEncoding=UTF-8
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: sqlPass80%
